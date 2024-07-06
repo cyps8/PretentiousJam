@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://c22n5brot47fv"]
+
+[ext_resource type="PackedScene" uid="uid://dkc86op6fhw0e" path="res://Nodes/Scenes/world.tscn" id="1_dkm73"]
+[ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_uybh3"]
+[ext_resource type="Script" path="res://Scripts/Menus/PauseMenu.gd" id="3_gu7o8"]
+
+[node name="Game" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_uybh3")
+
+[node name="World" parent="." instance=ExtResource("1_dkm73")]
+
+[node name="Pause" type="CanvasLayer" parent="."]
+script = ExtResource("3_gu7o8")
+
+[node name="Control" type="Control" parent="Pause"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="Pause/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -80.5
+offset_right = 180.0
+offset_bottom = 80.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "RESUME"
+
+[connection signal="pressed" from="Pause/Control/ResumeButton" to="Pause" method="ResumePressed"]

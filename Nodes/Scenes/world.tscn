@@ -1,0 +1,213 @@
+[gd_scene load_steps=35 format=3 uid="uid://dkc86op6fhw0e"]
+
+[ext_resource type="Texture2D" uid="uid://gdbgfole7tkn" path="res://Resources/Textures/Road.tres" id="1_6btb5"]
+[ext_resource type="Script" path="res://Scripts/Game/Player.gd" id="1_6m5fc"]
+[ext_resource type="Script" path="res://Scripts/Game/Cam.gd" id="2_wqr8n"]
+[ext_resource type="Script" path="res://Scripts/Game/Bus.gd" id="4_g7rjv"]
+
+[sub_resource type="Gradient" id="Gradient_jnu1m"]
+offsets = PackedFloat32Array(0.714286, 1)
+colors = PackedColorArray(0.289655, 0.0885098, 0, 1, 1, 0.694118, 0.592157, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_emgji"]
+noise_type = 2
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_81sih"]
+seamless = true
+color_ramp = SubResource("Gradient_jnu1m")
+noise = SubResource("FastNoiseLite_emgji")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i4my"]
+albedo_texture = SubResource("NoiseTexture2D_81sih")
+uv1_scale = Vector3(0.2, 0.3, 0.2)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_2tagg"]
+material = SubResource("StandardMaterial3D_6i4my")
+size = Vector3(200, 200, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qqvd"]
+
+[sub_resource type="TextMesh" id="TextMesh_x6rjq"]
+material = SubResource("StandardMaterial3D_8qqvd")
+text = "ART"
+font_size = 100
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qa2oh"]
+
+[sub_resource type="Gradient" id="Gradient_hm3so"]
+colors = PackedColorArray(0.201246, 0.227222, 0.211956, 1, 0.352986, 0.324805, 0.288796, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_awwuh"]
+noise_type = 3
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yj06p"]
+in_3d_space = true
+seamless = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_hm3so")
+noise = SubResource("FastNoiseLite_awwuh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsc7x"]
+albedo_texture = ExtResource("1_6btb5")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_yj06p")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i5miq"]
+material = SubResource("StandardMaterial3D_vsc7x")
+size = Vector2(2000, 16)
+
+[sub_resource type="Gradient" id="Gradient_c7rwj"]
+colors = PackedColorArray(0.423651, 0.423651, 0.423651, 1, 0.589096, 0.589096, 0.589096, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xv4ov"]
+noise_type = 3
+fractal_type = 2
+fractal_octaves = 2
+fractal_lacunarity = 4.0
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ocfn6"]
+seamless = true
+color_ramp = SubResource("Gradient_c7rwj")
+noise = SubResource("FastNoiseLite_xv4ov")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tghcf"]
+albedo_texture = SubResource("NoiseTexture2D_ocfn6")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_r1rfd"]
+material = SubResource("StandardMaterial3D_tghcf")
+size = Vector3(2000, 0.2, 3)
+
+[sub_resource type="Gradient" id="Gradient_7ro6k"]
+offsets = PackedFloat32Array(0, 0.79661)
+colors = PackedColorArray(0.300031, 0.636825, 0.797201, 1, 0.65834, 0.65834, 0.65834, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xa3sd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k0ftn"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_7ro6k")
+noise = SubResource("FastNoiseLite_xa3sd")
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_bu2el"]
+rayleigh_coefficient = 0.0
+night_sky = SubResource("NoiseTexture2D_k0ftn")
+
+[sub_resource type="Sky" id="Sky_13pjp"]
+sky_material = SubResource("PhysicalSkyMaterial_bu2el")
+
+[sub_resource type="Environment" id="Environment_sw43l"]
+background_mode = 2
+sky = SubResource("Sky_13pjp")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_e1vh7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s152b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aeid1"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2nfcm"]
+material = SubResource("StandardMaterial3D_aeid1")
+size = Vector3(10, 5.5, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xkob"]
+albedo_color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_clg5b"]
+material = SubResource("StandardMaterial3D_1xkob")
+top_radius = 0.7
+bottom_radius = 0.7
+height = 0.5
+
+[node name="World" type="Node3D"]
+process_mode = 1
+
+[node name="Building" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.8852, -63.7434, 82.1199)
+mesh = SubResource("BoxMesh_2tagg")
+skeleton = NodePath("../Floor/Road")
+
+[node name="Text" type="MeshInstance3D" parent="Building"]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 100.082, 93.4185, -35.7528)
+mesh = SubResource("TextMesh_x6rjq")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="WorldBoundary" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_qa2oh")
+
+[node name="Road" type="MeshInstance3D" parent="Floor"]
+process_mode = 1
+mesh = SubResource("PlaneMesh_i5miq")
+
+[node name="Pavement" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.52687)
+mesh = SubResource("BoxMesh_r1rfd")
+
+[node name="Pavement2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.49089)
+mesh = SubResource("BoxMesh_r1rfd")
+
+[node name="Env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sw43l")
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.777826, 0.529381, 0.338735, 0, -0.538977, 0.842321, 0.628479, -0.655179, -0.41923, 0, 5.57578, 0)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.3042, 1.47446, 10.3872)
+script = ExtResource("1_6m5fc")
+
+[node name="Shape" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.425406, 0)
+shape = SubResource("CylinderShape3D_e1vh7")
+
+[node name="Cam" type="Camera3D" parent="Player"]
+current = true
+script = ExtResource("2_wqr8n")
+
+[node name="Body" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.639957, 0, 0, 0, 0.730373, 0, 0, 0, 0.564768, 0, -0.995665, 0)
+cast_shadow = 3
+mesh = SubResource("CapsuleMesh_s152b")
+
+[node name="Head" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.594641, 0, 0, 0, 0.335661, 0, 0, 0, 0.621825, 0, 0.120792, 0)
+cast_shadow = 3
+mesh = SubResource("CapsuleMesh_s152b")
+
+[node name="LothianBus" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.0973, 3.30158, 5.24366)
+mesh = SubResource("BoxMesh_2nfcm")
+script = ExtResource("4_g7rjv")
+
+[node name="Wheel" type="MeshInstance3D" parent="LothianBus"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.17963, -2.66208, 1.90304)
+mesh = SubResource("CylinderMesh_clg5b")
+skeleton = NodePath("../..")
+
+[node name="Wheel2" type="MeshInstance3D" parent="LothianBus"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.17963, -2.66208, -1.94944)
+mesh = SubResource("CylinderMesh_clg5b")
+skeleton = NodePath("../..")
+
+[node name="Wheel3" type="MeshInstance3D" parent="LothianBus"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.38417, -2.66208, 1.90304)
+mesh = SubResource("CylinderMesh_clg5b")
+skeleton = NodePath("../..")
+
+[node name="Wheel4" type="MeshInstance3D" parent="LothianBus"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.38417, -2.66208, -1.94944)
+mesh = SubResource("CylinderMesh_clg5b")
+skeleton = NodePath("../..")
