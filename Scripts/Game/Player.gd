@@ -1,5 +1,11 @@
 extends CharacterBody3D
 
+class_name Player
+static var ins: Player
+
+func _init():
+	ins = self
+
 const SPEED = 5.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -22,5 +28,10 @@ func _physics_process(_dt):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	if position.x > 8000:
+		position.x -= 16000
+	elif position.x < -8000:
+		position.x += 16000
 
 	move_and_slide()
